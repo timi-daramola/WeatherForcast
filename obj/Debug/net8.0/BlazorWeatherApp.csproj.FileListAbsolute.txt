@@ -24,3 +24,4 @@ C:\Users\DELL\Desktop\WeatherForcast\obj\Debug\net8.0\refint\BlazorWeatherApp.dl
 C:\Users\DELL\Desktop\WeatherForcast\obj\Debug\net8.0\BlazorWeatherApp.pdb
 C:\Users\DELL\Desktop\WeatherForcast\obj\Debug\net8.0\BlazorWeatherApp.genruntimeconfig.cache
 C:\Users\DELL\Desktop\WeatherForcast\obj\Debug\net8.0\ref\BlazorWeatherApp.dll
+C:\Users\DELL\Desktop\WeatherForcast\obj\Debug\net8.0\BlazorWeatherApp.sourcelink.json
