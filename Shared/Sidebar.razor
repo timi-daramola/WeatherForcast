@@ -1,0 +1,13 @@
+@using BlazorWeatherApp.Shared
+@inject NavigationManager NavManager
+
+<div class="sidebar">
+    <div class="sidebar-brand text-center mb-4">
+        <h2>BlazorWeather</h2>
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link @(NavManager.Uri.EndsWith("/") ? "active" : "")" href="/">Home</a>
+        <a class="nav-link @(NavManager.Uri.EndsWith("/counter") ? "active" : "")" href="/counter">Counter</a>
+        <a class="nav-link @(NavManager.Uri.EndsWith("/fetchdata") ? "active" : "")" href="/fetchdata">Weather</a>
+    </nav>
+</div>

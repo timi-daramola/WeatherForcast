@@ -1,0 +1,68 @@
+﻿@page "/fetchdata"
+@using BlazorWeatherApp.Data
+@inject WeatherForecastService ForecastService
+
+<div class="page">
+    <Sidebar />
+
+    <div class="main">
+        <h1 class="mb-4">🌤️ Weather Forecast</h1>
+
+        @if (forecasts is null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var f in forecasts)
+                {
+                    <div class="col-md-4">
+                        <div class="weather-card @(GetTemperatureClass(f.TemperatureC))">
+                            <h5 class="card-title">@f.Date.ToString("ddd, MMM dd")</h5>
+                            <div class="display-4">@GetWeatherIcon(f.Summary)</div>
+                            <p>
+                                <strong>@f.TemperatureC °C</strong> | 
+                                <strong>@f.TemperatureF °F</strong>
+                            </p>
+                            <span class="badge bg-light text-dark">@f.Summary</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync();
+    }
+
+    private MarkupString GetWeatherIcon(string? summary)
+    {
+        if (string.IsNullOrWhiteSpace(summary))
+            return new MarkupString("☀️");
+
+        return summary.ToLower() switch
+        {
+            var s when s.Contains("freezing") => new MarkupString("❄️"),
+            var s when s.Contains("chilly") || s.Contains("cool") => new MarkupString("🌥️"),
+            var s when s.Contains("warm") || s.Contains("balmy") => new MarkupString("🌤️"),
+            var s when s.Contains("hot") || s.Contains("scorching") => new MarkupString("🔥"),
+            var s when s.Contains("rain") => new MarkupString("🌧️"),
+            _ => new MarkupString("☀️")
+        };
+    }
+
+    private string GetTemperatureClass(int tempC)
+    {
+        if (tempC <= 0) return "cold";
+        if (tempC <= 15) return "mild";
+        if (tempC <= 30) return "warm";
+        return "hot";
+    }
+}

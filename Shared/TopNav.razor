@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark top-nav px-3">
+    <button class="btn btn-outline-light me-3 d-md-none" @onclick="ToggleSidebar">
+        <span class="bi bi-list"></span>
+    </button>
+    <span class="navbar-brand mb-0 h1">Blazor Weather App</span>
+</nav>
+
+@code {
+    [Parameter] public EventCallback<bool> OnSidebarToggle { get; set; }
+    private void ToggleSidebar() => OnSidebarToggle.InvokeAsync(true);
+}

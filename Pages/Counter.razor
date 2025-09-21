@@ -1,0 +1,25 @@
+@page "/counter"
+@using BlazorWeatherApp.Shared
+
+<div class="page">
+    <Sidebar />
+
+    <div class="main">
+        <h1 class="mb-3">Counter</h1>
+        <p>Click the button to increment the counter:</p>
+
+        <div class="counter-card mt-3 p-4">
+            <h2>@currentCount</h2>
+            <button class="btn btn-lg btn-light mt-3" @onclick="IncrementCount">Increment</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
